@@ -24,3 +24,5 @@ lint_dockerfile:
   stage: test
   script:
     - hadolint dockerfiles/Dockerfile.*
+  only:
+    - merge_requests
