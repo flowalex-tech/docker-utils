@@ -1,0 +1,26 @@
+shell check:
+  image: koalaman/shellcheck-alpine:stable
+  stage: test
+  before_script:
+    - shellcheck --version
+  script:
+    - shellcheck ./*/*.sh
+  only:
+    - merge_requests
+
+shfmt:
+  image: mvdan/shfmt:v3.2.0-alpine
+  stage: test
+  before_script:
+    - shfmt -version
+  script:
+    - shfmt -i 2 -ci -d ./*/*.sh  # path to your shell scripts
+  only:
+    - merge_requests
+
+# Lint our Dockerfile
+lint_dockerfile:
+  image: hadolint/hadolint:v1.18.2-alpine
+  stage: test
+  script:
+    - hadolint dockerfiles/Dockerfile.*
