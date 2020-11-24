@@ -20,7 +20,7 @@ shfmt:
 
 # Lint our Dockerfile
 lint_dockerfile:
-  image: hadolint/hadolint:v1.18.2-alpine
+  image: hadolint/hadolint:v1.19.0-alpine
   stage: test
   script:
     - hadolint dockerfiles/Dockerfile.*
